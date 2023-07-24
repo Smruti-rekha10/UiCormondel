@@ -8,11 +8,13 @@ import {
   Image,
   Button,
   SafeAreaView,
-  DimensionValue,
+  Dimensions,
 } from 'react-native';
 import DropDown from './DropDown';
 import CheckBox from './Checkbox';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+const windowHeight = Dimensions.get('window').height;
 
 function LocationDetails() {
   // state for dropdown
@@ -88,7 +90,7 @@ function LocationDetails() {
   };
 
   const fertilizerRTID = item => {
-    setCustomer({...customer, fertilizerRTID:item});
+    setCustomer({...customer, fertilizerRTID: item});
   };
   return (
     <SafeAreaView>
@@ -292,6 +294,35 @@ function LocationDetails() {
         ) : (
           ''
         )}
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              {backgroundColor: '#fff'},
+              {borderColor: '#777777'},
+            ]}>
+            <Text style={[styles.buttonText,{color:'#777777'}]}>Previous</Text>
+          </TouchableOpacity>
+          <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
+            <TouchableOpacity
+              style={[
+                styles.button,
+                {backgroundColor: '#EDEDED'},
+                {borderColor: '#EDEDED'},
+                {marginRight:0}
+              ]}>
+              <Text style={[styles.buttonText,{color:'#777777'}]}>Save</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.button,
+                {backgroundColor: '#F36E21'},
+                {borderColor: '#F36E21'},
+              ]}>
+              <Text style={[styles.buttonText, {color: '#fff'}]}>Next</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -302,6 +333,7 @@ const styles = StyleSheet.create({
     fonf: 'poppins',
     margin: '2%',
     borderRadius: 7,
+    height: windowHeight - 200,
   },
   accodionBox: {
     height: 60,
@@ -369,6 +401,28 @@ const styles = StyleSheet.create({
   },
   star: {
     color: '#FF3333',
+    fontWeight: '600',
+    fontSize: 15,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 0,
+    marginBottom: '2%',
+    width:'100%',
+    justifyContent:'space-between'
+  },
+  button: {
+    height: 50,
+    width: 80,
+    borderRadius: 4,
+    alignItems: 'center',
+    paddingTop: 14,
+    margin: 10,
+    borderWidth: 2,
+  },
+  buttonText: {
+    textAlign: 'center',
     fontWeight: '600',
     fontSize: 15,
   },
