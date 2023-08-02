@@ -10,8 +10,8 @@ import {
   SafeAreaView,
   Dimensions,
 } from 'react-native';
-import DropDown from './DropDown';
-import CheckBox from './Checkbox';
+import DropDown from '../Common Element/DropDown';
+import CheckBox from '../Common Element/Checkbox';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const windowHeight = Dimensions.get('window').height;
@@ -407,7 +407,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 0,
+   bottom:0,
     marginBottom: '2%',
     width:'100%',
     justifyContent:'space-between'

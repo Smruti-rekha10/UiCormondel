@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import Images from './Asset/Vector.png';
+import Images from '../Asset/Vector.png';
 
 const DropDown = ({data, selectValue, oneSelect}) => {
   const [option, setOption] = React.useState(false);
@@ -15,7 +15,7 @@ const DropDown = ({data, selectValue, oneSelect}) => {
   };
 
   return (
-    <View style={{}}>
+    <View >
       <TouchableOpacity style={styles.dropDownStyle} onPress={selectOption}>
         <Text>{!!selectValue ? selectValue.title : 'Choose Option'}</Text>
 

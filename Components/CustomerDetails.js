@@ -10,7 +10,7 @@ import {
   Button,
   ScrollView,
 } from 'react-native';
-import DropDown from './DropDown';
+import DropDown from '../Common Element/DropDown';
 
 function CustomerDetails() {
   const [address, setAddress] = useState({

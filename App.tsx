@@ -6,14 +6,13 @@
  */
 
 import React from 'react';
-
+import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   useColorScheme,
   View,
 } from 'react-native';
@@ -25,12 +24,40 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import CustomerDetails from './CustomerDetails';
-import LocationDetails from './LocationDetails';
+import Leads from './Components/Leads';
+import Test from './Components/Test'
+import LeadDetails from './Components/LeadDetails';
+import LocationDetails from './Components/LocationDetails';
 
+type SectionProps = PropsWithChildren<{
+  title: string;
+}>;
 
-
-
+function Section({children, title}: SectionProps): JSX.Element {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
+  );
+}
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -46,66 +73,34 @@ function App(): JSX.Element {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
-        contentInsetAdjustmentBehavior="automatic">
-       
-        {/* <CustomerDetails/> */}
-        <LocationDetails/>
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Leads/>
+        {/* <Test/> */}
+        {/* <LeadDetails/> */}
         
       </ScrollView>
-
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   backgroundColor: '#fff',
-  //   font: 'poppins'
-  // },
-  // mainHeader: {
-  //   color: '#024122',
-  //   fontWeight: '600',
-  //   fontSize: 17,
-  //   lineHeight: 25.5, width: 130
-  // },
-  // headerContainer: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   marginVertical: '5%',
-  //   marginLeft: '2%',
-  //   marginRight: '1%'
-  // },
-  // bar: {
-  //   flex: 1,
-  //   height: 3,
-  //   backgroundColor: '#b7b7b7'
-  // },
-  // subHeader: {
-  //   color: '#024122',
-  //   fontWeight: '600',
-  //   fontSize: 15,
-
-  // },
-  // inputBoxContainer: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   marginHorizontal: '2%',
-  //   marginVertical: '1%'
-  // },
-
-  // star: {
-  //   color: '#FF3333',
-  //   fontWeight: '600',
-  //   fontSize: 15,
-  // },
-  // input: {
-  //   borderBottomWidth: 3,
-  //   borderBottomColor: '#ddd',
-  //   borderTopWidth: 0,
-  //   borderRightWidth: 0,
-  //   borderLeftWidth: 0,
-  //   marginHorizontal: '2%',
-  // }
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
+  },
 });
 
 export default App;
